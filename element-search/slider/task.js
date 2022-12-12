@@ -2,30 +2,23 @@ let btnPrev = document.querySelector('.slider__arrow_prev');
 let btnNext = document.querySelector('.slider__arrow_next');
 let itemsArray = document.querySelectorAll('.slider__item');
 
+itemsArray = Array.from(itemsArray);
+
 btnPrev.onclick = function(){
-    for(let i = 0; i < itemsArray.length; i++){
-        if(itemsArray[i].className == 'slider__item slider__item_active'){
-            itemsArray[i].className = 'slider__item';
-            let previousItemOrder = i - 1;
-            previousItemOrder = previousItemOrder < 0 ? (itemsArray.length + previousItemOrder) : previousItemOrder; 
-            itemsArray[previousItemOrder].className = 'slider__item slider__item_active';
-            break;
-        }
-    }
-    
+
+    let activeItem =  itemsArray.findIndex(item => item.className == 'slider__item slider__item_active');
+    itemsArray[activeItem].className = 'slider__item';
+    activeItem = activeItem == 0 ? itemsArray.length - 1 : activeItem - 1;
+    itemsArray[activeItem].className = 'slider__item slider__item_active';
+
 }
 
 btnNext.onclick = function(){
-    for(let i = 0; i < itemsArray.length; i++){
-        if(itemsArray[i].className == 'slider__item slider__item_active'){
-            console.log("found element!");
-            itemsArray[i].className = 'slider__item';
-            let previousItemOrder = i + 1;
-            previousItemOrder = previousItemOrder > (itemsArray.length - 1) ? (previousItemOrder - itemsArray.length) : previousItemOrder; 
-            console.log('NEXT ORDRER is :'+previousItemOrder)
-            itemsArray[previousItemOrder].className = 'slider__item slider__item_active';
-            break;
-        }
-    }
-    
+
+
+    let activeItem =  itemsArray.findIndex(item => item.className == 'slider__item slider__item_active');
+    itemsArray[activeItem].className = 'slider__item';
+    activeItem = activeItem == itemsArray.length - 1 ? 0 : activeItem + 1;
+    itemsArray[activeItem].className = 'slider__item slider__item_active';
+
 }
