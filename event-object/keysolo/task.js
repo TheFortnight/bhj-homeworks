@@ -18,9 +18,10 @@ class Game {
 
   registerEvents() {
         
-      function compareSymbols(event){
+     let compareSymbols = (event) => {
         
-      let letter = document.querySelector('.symbol.symbol_current');
+      let letter = this.currentSymbol;
+      
       
         if(letter.textContent == event.key){
           this.success();
