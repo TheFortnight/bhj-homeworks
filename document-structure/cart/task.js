@@ -22,17 +22,22 @@ addButtons.forEach(button => {
         let product = button.closest('.product');
         let dataId = product.dataset.id;
         let imgSrc = product.getElementsByTagName('img')[0].currentSrc;
-        let count = product.querySelector('.product__quantity-value').textContent;
+        let count = Number(product.querySelector('.product__quantity-value').textContent);
         let newProduct = `<div class="cart__product" data-id=${dataId}>
         <img class="cart__product-image" src=${imgSrc}>
         <div class="cart__product-count">${count}</div>
     </div>`
         let cart = document.querySelector('.cart__products');
-        let ProductsInCart = Array.from(cart.querySelectorAll('.cart__product'));
-        let compareRes = ProductsInCart.findIndex(el => el.dataset.id == dataId);
+        let productsInCart = Array.from(cart.querySelectorAll('.cart__product'));
+        let compareRes = productsInCart.findIndex(el => el.dataset.id == dataId);
         console.log('compareRes '+compareRes);
         if(compareRes == -1){
         cart.innerHTML += newProduct;
-        };
+        }
+        else {
+            prodAmount = Number(productsInCart[compareRes].querySelector('.cart__product-count').textContent);
+            console.log('type of amount: '+typeof amountToNumber+'; type of count: '+typeof count);
+            productsInCart[compareRes].querySelector('.cart__product-count').textContent = prodAmount + count;
+        }
     }
 })
