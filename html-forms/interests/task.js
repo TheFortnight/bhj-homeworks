@@ -1,21 +1,10 @@
-/* let allCheckBoxes = Array.from(document.querySelectorAll('.interest__check'));
-for(checkBox of allCheckBoxes){
-    checkBox.onclick = function(){
-            let parent = checkBox.parentElement;
-            let list = parent.getElementsByTagName('ul');
-            let foldedBoxes = Array.from(list.querySelectorAll('.interest__check'));
-        foldedBoxes.forEach(box => {
-            
-    box.checked = true;
-})}} */
-
-let listOfLists = Array.from(document.getElementsByTagName('ul'));
-listOfLists.forEach(list => {
-    let foldedList = Array.from(list.getElementsByTagName('ul'));
-    if (foldedList.length > 0){
-        foldedList.forEach(element => {
-            let checkBoxes = Array.from(element.querySelector('.interest__check'));
-            checkBoxes.forEach(checkBox => checkBox.checked = true);
-                });
+let groupBoxes = document.querySelectorAll('.interest__check');
+groupBoxes.forEach(groupBox => {
+    groupBox.onclick = () => {
+        groupBox.checked = !groupBox.checked;
+        let parent = groupBox.parentElement;
+        parent = parent.parentElement;
+        let checkBoxes = parent.querySelectorAll('.interest__check');
+        checkBoxes.forEach(box => {box.checked = !box.checked});
     }
-});
+ });
