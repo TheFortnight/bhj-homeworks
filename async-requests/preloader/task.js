@@ -18,7 +18,7 @@ request.addEventListener('readystatechange', function () {
             ${value.CharCode}
         </div>
         <div class="item__value">
-        ${value.NumCode}
+        ${value.Value}
         </div>
         <div class="item__currency">
         ${value.Name}

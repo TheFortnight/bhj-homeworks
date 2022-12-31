@@ -1,9 +1,4 @@
-//Уже после отправки задания понял, что кнопка не привязана к запросу. Сделал, но почему-то динамика не отслеживается.
-//Файл более 200 мб не может загружаться так быстро.
-
 let request = new XMLHttpRequest();
-
-request.open("POST", 'https://students.netoservices.ru/nestjs-backend/upload');
 
 const progress = document.getElementById('progress');
 
@@ -18,10 +13,11 @@ request.upload.onloadend = function (e) {
     progress.value = 1;
 }
 
+let form = document.forms.form;
 
-let sendButton = document.querySelector('#send');
-sendButton.onclick = () => {
+form.addEventListener('submit', (event)=>{
+    request.open("POST", 'https://students.netoservices.ru/nestjs-backend/upload');
     request.send(uploadFile);
-    return false;
-}
+    event.preventDefault();
+})
 
