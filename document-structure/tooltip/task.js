@@ -15,12 +15,9 @@ links.forEach(link => {
         existingTips[0].textContent = tipText;
     }
     else{
-        let tipElement = `<div class="tooltip tooltip_active" style="position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -50px;
-        margin-left: -50px">${tipText}</div>`;
-        link.outerHTML += tipElement;
+        let position = link.getBoundingClientRect();
+        let tipElement = `<div class="tooltip tooltip_active" style="position: absolute; left:${position.x}px">${tipText}</div>`;
+        link.innerHTML += tipElement;
         
     }
        
